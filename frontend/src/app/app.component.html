@@ -1,0 +1,12 @@
+<header class="hero">
+  <div class="hero__content">
+    <span class="hero__badge">Angular + Node.js + PostgreSQL</span>
+    <h1>Gestión de clientes</h1>
+    <p>Registra nuevos clientes y consulta todos los datos almacenados.</p>
+  </div>
+</header>
+
+<main class="layout">
+  <app-cliente-form (clienteCreado)="actualizarLista()" />
+  <app-cliente-list />
+</main>

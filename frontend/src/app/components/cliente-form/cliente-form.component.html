@@ -1,0 +1,65 @@
+<section class="card" aria-labelledby="titulo-formulario">
+  <div class="card__header">
+    <p class="eyebrow">Nuevo registro</p>
+    <h2 id="titulo-formulario">Agregar cliente</h2>
+  </div>
+
+  <form [formGroup]="formulario" (ngSubmit)="guardar()" novalidate>
+    <div class="field">
+      <label for="nombreCliente">Nombre del cliente</label>
+      <input
+        id="nombreCliente"
+        type="text"
+        formControlName="nombreCliente"
+        maxlength="120"
+        placeholder="Ej. Ana López"
+        autocomplete="name"
+      />
+      @if (campoInvalido('nombreCliente')) {
+        <small class="field__error">El nombre es obligatorio.</small>
+      }
+    </div>
+
+    <div class="field">
+      <label for="direccionCliente">Dirección del cliente</label>
+      <textarea
+        id="direccionCliente"
+        formControlName="direccionCliente"
+        maxlength="250"
+        rows="3"
+        placeholder="Ej. Zona 1, Ciudad de Guatemala"
+        autocomplete="street-address"
+      ></textarea>
+      @if (campoInvalido('direccionCliente')) {
+        <small class="field__error">La dirección es obligatoria.</small>
+      }
+    </div>
+
+    <div class="field">
+      <label for="telefono">Teléfono</label>
+      <input
+        id="telefono"
+        type="tel"
+        formControlName="telefono"
+        maxlength="30"
+        placeholder="Ej. 5555-5555"
+        autocomplete="tel"
+      />
+      @if (campoInvalido('telefono')) {
+        <small class="field__error">El teléfono es obligatorio.</small>
+      }
+    </div>
+
+    @if (mensajeExito) {
+      <p class="alert alert--success" role="status">{{ mensajeExito }}</p>
+    }
+
+    @if (mensajeError) {
+      <p class="alert alert--error" role="alert">{{ mensajeError }}</p>
+    }
+
+    <button type="submit" [disabled]="enviando">
+      {{ enviando ? 'Registrando…' : 'Registrar cliente' }}
+    </button>
+  </form>
+</section>
